@@ -3,69 +3,66 @@ package pro04;
 import java.util.List;
 
 public class MemberApp {
-	
-	public static List<MemberVo> mList ;
-	public static MemberDao dao = new MemberDao();	
-	
+
+	public static List<MemberVo> mList;
+	public static MemberDao dao = new MemberDao();
+
 	public static void main(String[] args) {
-		
-		
-		// ±è»ó¸í Ãß°¡
+
+		// ê¹€ìƒëª… ì¶”ê°€
 		MemberVo vo = new MemberVo();
-		vo.setEmail( "kim@bit.ac.kr" );
-		vo.setName( "±èºñÆ®" );
-		vo.setGender( "³²" );
-		vo.setPassword( "12345" );
-		
-		dao.insertMember( vo );
-		
-		// ÇöÀç ¸â¹ö ¸®½ºÆ® Ãâ·Â
+		vo.setEmail("kim@bit.ac.kr");
+		vo.setName("ê¹€ë¹„íŠ¸");
+		vo.setGender("ë‚¨");
+		vo.setPassword("12345");
+
+		dao.insertMember(vo);
+
+		// í˜„ì¬ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		printAllMemebrList();
 
-		
-		
-		
-		// ÀÌ»ó¸í Ãß°¡
-		vo.setEmail( "lee@bit.ac.kr" );
-		vo.setName( "ÀÌºñÆ®" );
-		vo.setGender( "¿©" );
-		vo.setPassword( "12345" );
+		// ì´ìƒëª… ì¶”ê°€
+		vo.setEmail("lee@bit.ac.kr");
+		vo.setName("ì´ë¹„íŠ¸");
+		vo.setGender("ì—¬");
+		vo.setPassword("12345");
 
-		dao.insertMember( vo );
-		
-		// ÇöÀç ¸â¹ö ¸®½ºÆ® Ãâ·Â
-		printAllMemebrList();
-		
-		
-		
-		
-		// ÀÌ»ó¸í ºñ¹Ğ¹øÈ£ º¯°æ(ÀÌ¸ŞÀÏ ÁÖ¼Ò Ã£¾Æ¼­ ºñ¹Ğ¹øÈ£¸¸ º¯°æµÇ¾î¾ßÇÔ)
-		vo.setEmail( "lee@bit.ac.kr" );
-		vo.setName( "" );
-		vo.setGender( "" );
-		vo.setPassword( "54321" );
+		dao.insertMember(vo);
 
-		dao.updatePassword( vo );
-		// ÇöÀç ¸â¹ö ¸®½ºÆ® Ãâ·Â
+		// í˜„ì¬ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		printAllMemebrList();
-		
-		
-		
-		
-		// ±è»ó¸í »èÁ¦
-		dao.deleteMember( "kim@bit.ac.kr" );
-		// ÇöÀç ¸â¹ö ¸®½ºÆ® Ãâ·Â
+
+		// ì´ìƒëª… ë¹„ë°€ë²ˆí˜¸ ë³€ê²½(ì´ë©”ì¼ ì£¼ì†Œ ì°¾ì•„ì„œ ë¹„ë°€ë²ˆí˜¸ë§Œ ë³€ê²½ë˜ì–´ì•¼í•¨)
+		vo.setEmail("lee@bit.ac.kr");
+		vo.setName("");
+		vo.setGender("");
+		vo.setPassword("54321");
+
+		dao.updatePassword(vo);
+		// í˜„ì¬ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		printAllMemebrList();
-		
-		
-	}
-	
+
+		// ê¹€ìƒëª… ì‚­ì œ
+		dao.deleteMember("kim@bit.ac.kr");
+		// í˜„ì¬ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+		printAllMemebrList();
+
+	} // main
+
 	public static void printAllMemebrList() {
-		System.out.println( "***** ÇöÀç  ¸â¹ö ¸®½ºÆ® *****" );
-
-		//Ãâ·ÂÄÚµåÀÛ¼º
+		System.out.println("***** í˜„ì¬  ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ *****");
 		
-	}
-	
+		mList = dao.getListAll();
+		MemberVo vo;
+		
+		for(int i = 0; i < mList.size(); i++) {
+			vo = mList.get(i);
+			
+			System.out.println(vo.getId() + " | " + vo.getName()
+							   + " | " + vo.getEmail() + " | " + vo.getPassword() 
+							   + " | " + vo.getGender());
+		}
 
-}
+	} // printAllMem
+
+} // Class

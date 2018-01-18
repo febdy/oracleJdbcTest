@@ -1,5 +1,8 @@
 package pro05;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class BookShopApp {
 
 	public static void main(String[] args) {
@@ -7,64 +10,77 @@ public class BookShopApp {
 		BookShopDao dao = new BookShopDao();
 		BookVo vo = new BookVo();
 		
-		vo.setTitle( "Æ®¿ÍÀÏ¶óÀÕ" );
-		vo.setAuthorName( "½ºÅ×ÆÄ´Ï¸ŞÀÌ¾î" );
+		vo.setTitle( "íŠ¸ì™€ì¼ë¼ì‡" );
+		vo.setAuthorName( "ìŠ¤í…ŒíŒŒë‹ˆë©”ì´ì–´" );
 		dao.insert( vo );
 
-		vo.setTitle( "´º¹®" );
-		vo.setAuthorName( "½ºÅ×ÆÄ´Ï¸ŞÀÌ¾î" );
+		vo.setTitle( "ë‰´ë¬¸" );
+		vo.setAuthorName( "ìŠ¤í…ŒíŒŒë‹ˆë©”ì´ì–´" );
 		dao.insert( vo );
 
-		vo.setTitle( "ÀÌÅ¬¸³½º" );
-		vo.setAuthorName( "½ºÅ×ÆÄ´Ï¸ŞÀÌ¾î" );
+		vo.setTitle( "ì´í´ë¦½ìŠ¤" );
+		vo.setAuthorName( "ìŠ¤í…ŒíŒŒë‹ˆë©”ì´ì–´" );
 		dao.insert( vo );
 		
-		vo.setTitle( "Æ®¿ÍÀÏ¶óÀÕ" );
-		vo.setAuthorName( "½ºÅ×ÆÄ´Ï¸ŞÀÌ¾î" );
+		vo.setTitle( "ë¸Œë ˆì´í‚¹ë˜" );
+		vo.setAuthorName( "ìŠ¤í…ŒíŒŒë‹ˆë©”ì´ì–´" );
 		dao.insert( vo );
 
-		vo.setTitle( "ºê·¹ÀÌÅ·´ø" );
-		vo.setAuthorName( "½ºÅ×ÆÄ´Ï¸ŞÀÌ¾î" );
+		vo.setTitle( "ì•„ë¦¬ë‘" );
+		vo.setAuthorName( "ì¡°ì •ë˜" );
 		dao.insert( vo );
 
-		vo.setTitle( "¾Æ¸®¶û" );
-		vo.setAuthorName( "Á¶Á¤·¡" );
+		vo.setTitle( "ì Šì€ê·¸ë“¤" );
+		vo.setAuthorName( "ê¹€ë™ì¸" );
 		dao.insert( vo );
 
-		vo.setTitle( "ÀşÀº±×µé" );
-		vo.setAuthorName( "±èµ¿ÀÎ" );
+		vo.setTitle( "ì•„í”„ë‹ˆê¹Œ ì²­ì¶˜ì´ë‹¤" );
+		vo.setAuthorName( "ê¹€ë‚œë„" );
 		dao.insert( vo );
 
-		vo.setTitle( "¾ÆÇÁ´Ï±î Ã»ÃáÀÌ´Ù" );
-		vo.setAuthorName( "±è³­µµ" );
+		vo.setTitle( "ê·€ì²œ" );
+		vo.setAuthorName( "ì²œìƒë³‘" );
 		dao.insert( vo );
 
-		vo.setTitle( "±ÍÃµ" );
-		vo.setAuthorName( "Ãµ»óº´" );
+		vo.setTitle( "íƒœë°±ì‚°ë§¥" );
+		vo.setAuthorName( "ì¡°ì •ë˜" );
 		dao.insert( vo );
 
-		vo.setTitle( "ÅÂ¹é»ê¸Æ" );
-		vo.setAuthorName( "Á¶Á¤·¡" );
-		dao.insert( vo );
-
-		vo.setTitle( "Ç®ÇÏ¿ì½º" );
-		vo.setAuthorName( "¿ø¼ö¿¬" );
+		vo.setTitle( "í’€í•˜ìš°ìŠ¤" );
+		vo.setAuthorName( "ì›ìˆ˜ì—°" );
 		dao.insert( vo );
 		
 		Scanner key = new Scanner(System.in);
-		System.out.print("´ë¿© ÇÏ°í ½ÍÀº Ã¥ÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.:");
+		System.out.print("ëŒ€ì—¬ í•˜ê³  ì‹¶ì€ ì±…ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.:");
 		int num = key.nextInt();
 		
-		/*
-		 * ¿©±â¿¡ ÀÔ·Â¹ŞÀº Ã¥¹øÈ£¿Í ÀÏÄ¡ÇÏ´Â  BookShopDaoÀÇ rent()¸¦ È£ÃâÇÏ´Â ÄÚµå¸¦ ÀÛ¼ºÇÏ¼¼¿ä.
-		 *  
-		 */
+		dao.rent(num);
 		
 		displayBookInfo();
 	}
 	
 	public static void displayBookInfo() {
-		System.out.println("*****µµ¼­ Á¤º¸ Ãâ·ÂÇÏ±â******");
+		System.out.println("*****ë„ì„œ ì •ë³´ ì¶œë ¥í•˜ê¸°******");
+		
+		List<BookVo> bList = new BookShopDao().getBookInfo();
+		BookVo vo;
+		
+		for(int i = 0; i < bList.size(); i++) {
+			vo = bList.get(i);
+			System.out.print("ì±… ì œëª©:" + vo.getTitle());
+			
+			if(vo.getPubs() != null)
+				System.out.print(", ì¶œíŒì‚¬:" + vo.getPubs());
+			if(vo.getPubDate() != null)
+				System.out.print(", ì¶œíŒì¼:" + vo.getPubDate());
+			System.out.print(", ì‘ê°€:" + vo.getAuthorName());
+			System.out.print(", ëŒ€ì—¬ ìœ ë¬´:");
+			
+			if(vo.getStateCode().equals("0"))
+				System.out.println("ëŒ€ì—¬ì¤‘");
+			else
+				System.out.println("ì¬ê³ ìˆìŒ");
+		}
 	}	
 
 }
